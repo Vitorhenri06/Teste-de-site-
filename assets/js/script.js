@@ -64,3 +64,62 @@ window.addEventListener('scroll', () => {
     header.style.backdropFilter = 'none';
   }
 });
+
+// Formulário de contato com Gmail API
+const contactForm = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
+const submitBtn = document.getElementById('submit-btn');
+const btnText = document.getElementById('btn-text');
+const btnLoading = document.getElementById('btn-loading');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Mostrar loading
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+
+    // Limpar mensagens anteriores
+    formMessage.innerHTML = '';
+    formMessage.className = 'form-message';
+
+    // Coletar dados do formulário
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData);
+
+    try {
+      // Enviar para o backend
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Sucesso
+        formMessage.className = 'form-message success';
+        formMessage.innerHTML = '<p>✅ ' + result.message + '</p>';
+        contactForm.reset();
+      } else {
+        // Erro
+        formMessage.className = 'form-message error';
+        formMessage.innerHTML = '<p>❌ ' + result.message + '</p>';
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      formMessage.className = 'form-message error';
+      formMessage.innerHTML = '<p>❌ Erro ao enviar mensagem. Tente novamente.</p>';
+    } finally {
+      // Esconder loading
+      submitBtn.disabled = false;
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+    }
+  });
+}
