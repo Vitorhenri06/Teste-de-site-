@@ -1,28 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>site do chico linguica</title>
-    
+    <meta name="description" content="Site profissional apresentando serviços e portfólio">
+    <meta name="keywords" content="profissional, serviços, portfólio">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <title>Chico Linguiça - Profissional</title>
   </head>
   <body>
-    
-        <h1>Site do chico Linguica</h1>
-        <H3>Este vai ser O SITE</H3>
-    
-    <ul>
+    <!-- HEADER -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <div class="logo">
+            <a href="index.html">CL</a>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Início</a></li>
+            <li><a href="#sobre" class="nav-link">Sobre</a></li>
+            <li><a href="#servicos" class="nav-link">Serviços</a></li>
+            <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+            <li><a href="pages/contato.html" class="nav-link">Contato</a></li>
+          </ul>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        <li>Chega chega </li>
-        <li>Não é feijão</li>
-        <li>67</li>
-
-    </ul>
-    <dt>chico</dt> 
-    <p>aa</p>
-    
+    <!-- MAIN CONTENT -->
     <main>
-      
+      <!-- HERO SECTION -->
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1>Bem-vindo ao Meu Site</h1>
+            <p>Soluções profissionais para suas necessidades</p>
+            <a href="pages/contato.html" class="cta-button">Entre em Contato</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOBRE SECTION -->
+      <section id="sobre" class="about">
+        <div class="container">
+          <h2>Sobre Mim</h2>
+          <div class="about-content">
+            <div class="about-text">
+              <p>
+                Sou um profissional experiente com dedicação ao desenvolvimento de soluções
+                criativas e inovadoras. Com foco em qualidade e excelência, trabalho para
+                oferecer os melhores resultados aos meus clientes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVIÇOS SECTION -->
+      <section id="servicos" class="services">
+        <div class="container">
+          <h2>Serviços</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <h3>Desenvolvimento</h3>
+              <p>Criação de soluções web modernas e responsivas</p>
+            </div>
+            <div class="service-card">
+              <h3>Design</h3>
+              <p>Interfaces criativas e experiências de usuário intuitivas</p>
+            </div>
+            <div class="service-card">
+              <h3>Consultoria</h3>
+              <p>Orientação profissional para projetos e negócios</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO SECTION -->
+      <section id="portfolio" class="portfolio">
+        <div class="container">
+          <h2>Portfólio</h2>
+          <div class="portfolio-grid">
+            <div class="portfolio-item">
+              <div class="portfolio-image"></div>
+              <h3>Projeto 1</h3>
+              <p>Descrição do projeto</p>
+            </div>
+            <div class="portfolio-item">
+              <div class="portfolio-image"></div>
+              <h3>Projeto 2</h3>
+              <p>Descrição do projeto</p>
+            </div>
+            <div class="portfolio-item">
+              <div class="portfolio-image"></div>
+              <h3>Projeto 3</h3>
+              <p>Descrição do projeto</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 Chico Linguiça. Todos os direitos reservados.</p>
+        <div class="social-links">
+          <a href="#" class="social-link">GitHub</a>
+          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">Instagram</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
