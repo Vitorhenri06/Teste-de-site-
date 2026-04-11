@@ -2,37 +2,73 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navMenu.classList.toggle('active');
-});
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+}
 
 // Fecha menu ao clicar em link
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    if (hamburger) {
+      hamburger.classList.remove('active');
+    }
+    if (navMenu) {
+      navMenu.classList.remove('active');
+    }
   });
 });
 
 // Smooth scroll para âncoras
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+    const href = this.getAttribute('href');
+    if (href !== '#') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     }
   });
 });
 
+// Filtro de Portfólio
+const filterBtns = document.querySelectorAll('.filter-btn');
+const portfolioItems = document.querySelectorAll('[data-category]');
+
+if (filterBtns.length > 0) {
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      portfolioItems.forEach(item => {
+        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.animation = 'fadeInUp 0.5s ease-out';
+          }, 50);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
 // Animação de entrada das seções
 const observerOptions = {
   threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -40,14 +76,101 @@ const observer = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       entry.target.style.opacity = '1';
       entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
     }
   });
 }, observerOptions);
 
 // Elementos para animar
-const animateElements = document.querySelectorAll('.about-content, .services-grid, .portfolio-grid');
+const animateElements = document.querySelectorAll(
+  '.about-content, .services-grid, .portfolio-grid, .service-card, ' +
+  '.portfolio-item, .skill-card, .stat-card, .package-card, .case-study, ' +
+  '.timeline-item, .faq-item, .process-step'
+);
+
 animateElements.forEach(el => {
   el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  observer.observe(el);
+});
+
+// Navegação ativa baseada na scroll
+window.addEventListener('scroll', () => {
+  let current = '';
+  const sections = document.querySelectorAll('section[id]');
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (pageYOffset >= sectionTop - 200) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (href.includes(current) && current !== '') {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Form Submission (Contato)
+const contactForm = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    if (formMessage) {
+      formMessage.innerHTML = '<p style="color: #3b82f6;">Enviando sua mensagem...</p>';
+      formMessage.style.display = 'block';
+    }
+  });
+}
+
+// Fechar menu com tecla Esc
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (hamburger) {
+      hamburger.classList.remove('active');
+    }
+    if (navMenu) {
+      navMenu.classList.remove('active');
+    }
+  }
+});
+
+// Adicionar feedback visual ao clicar em cards
+document.querySelectorAll('.service-card, .portfolio-item, .package-card, .skill-card').forEach(card => {
+  card.addEventListener('click', function() {
+    this.style.transform = 'scale(0.98)';
+    setTimeout(() => {
+      this.style.transform = '';
+    }, 100);
+  });
+});
+
+// Detectar se é dispositivo móvel
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('🚀 Site carregado com sucesso!');
+  
+  // Ativa o primeiro filtro por padrão
+  const firstFilterBtn = document.querySelector('.filter-btn');
+  if (firstFilterBtn) {
+    firstFilterBtn.click();
+  }
+
+  // Log de device
+  if (isMobileDevice()) {
+    console.log('📱 Dispositivo mobile detectado');
+  }
+});
   el.style.transform = 'translateY(30px)';
   el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
   observer.observe(el);
