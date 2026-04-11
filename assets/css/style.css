@@ -466,7 +466,7 @@ h2::after {
 }
 
 .profile-placeholder {
-  width: 100%;
+  width: 80%;
   aspect-ratio: 1;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   border-radius: var(--border-radius);
@@ -476,16 +476,17 @@ h2::after {
   justify-content: center;
   color: white;
   box-shadow: var(--shadow-md);
+  margin: 0 auto;
 }
 
 .profile-placeholder i {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
   opacity: 0.8;
 }
 
 .profile-placeholder p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0;
 }
@@ -859,6 +860,50 @@ h2::after {
   transform: translateY(-2px);
 }
 
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: white;
+  color: var(--primary-color);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+  background-color: #f3f4f6;
+}
+
+.cta-button i {
+  font-size: 1.1rem;
+}
+
 /* ===== FOOTER ===== */
 .footer {
   background-color: var(--text-color);
@@ -1026,6 +1071,14 @@ h2::after {
     padding: 1.5rem;
   }
 
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+  }
+
   .footer .container {
     flex-direction: column;
   }
@@ -1087,6 +1140,18 @@ h2::after {
     gap: 1rem;
   }
 
+  .cta-section {
+    padding: 60px 0;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-section p {
+    font-size: 0.95rem;
+  }
+
   .cta-button,
   .btn {
     padding: 0.6rem 1.5rem;
@@ -1113,6 +1178,19 @@ h2::after {
 
   .nav-link {
     font-size: 0.9rem;
+  }
+
+  .cta-section {
+    padding: 50px 0;
+  }
+
+  .cta-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .cta-section p {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
   }
 }
 
