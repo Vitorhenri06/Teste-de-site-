@@ -10,8 +10,8 @@
   --secondary-color: #1e40af;
   --accent-color: #f59e0b;
   --text-color: #1f2937;
-  --bg-color: #ffffff;
-  --bg-secondary: #f9fafb;
+  --bg-color: #fff;
+  --bg-secondary: #f9fafbe0;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --border-radius: 8px;
   --transition: all 0.3s ease;
@@ -428,7 +428,7 @@ h2::after {
 }
 
 .contact-form {
-  background-color: var(--bg-color);
+  background-color: var(--bg-secondary);
   padding: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
