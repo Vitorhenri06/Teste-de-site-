@@ -160,21 +160,22 @@ function isMobileDevice() {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 Site carregado com sucesso!');
   
-  // Ativa o primeiro filtro por padrão
   const firstFilterBtn = document.querySelector('.filter-btn');
   if (firstFilterBtn) {
     firstFilterBtn.click();
   }
 
-  // Log de device
   if (isMobileDevice()) {
     console.log('📱 Dispositivo mobile detectado');
-  }
+  };
 });
+
+// Animação de entrada para elementos específicos
+const specificAnimateElements = document.querySelectorAll('.about-content, .services-grid, .portfolio-grid');
   el.style.transform = 'translateY(30px)';
   el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
   observer.observe(el);
-});
+
 
 // Header fixo com mudança de cor no scroll
 window.addEventListener('scroll', () => {

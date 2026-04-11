@@ -22,12 +22,45 @@ Para o formulário de contato funcionar, você precisa configurar a API do Gmail
    - Vá para "APIs e Serviços" > "Biblioteca"
    - Procure por "Gmail API" e ative
 
-### 2. Criar Credenciais OAuth 2.0
+### 3. Configurar Variáveis de Ambiente
 
-1. Vá para "APIs e Serviços" > "Credenciais"
-2. Clique em "Criar Credenciais" > "ID do cliente OAuth"
-3. Selecione "Aplicação Web"
-4. Adicione `http://localhost:3000/oauth2callback` como URI de redirecionamento autorizado
+1. Copie o arquivo `.env.example` para `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Preencha as variáveis no arquivo `.env`:
+   - `GMAIL_CLIENT_ID`: Cole o Client ID das credenciais OAuth
+   - `GMAIL_CLIENT_SECRET`: Cole o Client Secret das credenciais OAuth
+   - `GMAIL_REDIRECT_URI`: Deve ser `http://localhost:3000/oauth2callback`
+   - `GMAIL_REFRESH_TOKEN`: Você precisará gerar este token (veja instruções abaixo)
+   - `GMAIL_USER_EMAIL`: Seu endereço de email do Gmail
+   - `PORT`: Porta do servidor (padrão: 3000)
+
+### 4. Gerar Refresh Token
+
+Para gerar o refresh token, você pode usar um script auxiliar ou seguir o fluxo OAuth2 manualmente. O refresh token permite que a aplicação envie emails em seu nome.
+
+## 🛠️ Instalação e Execução
+
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+2. Configure o arquivo `.env` conforme descrito acima
+
+3. Execute o servidor:
+   ```bash
+   npm start
+   ```
+
+4. Para desenvolvimento (com nodemon):
+   ```bash
+   npm run dev
+   ```
+
+5. Acesse `http://localhost:3000` no navegador
 5. Baixe o arquivo JSON das credenciais
 
 ### 3. Obter Refresh Token
@@ -87,22 +120,39 @@ npm start
 
 4. Acesse `http://localhost:3000` no navegador
 
-## 📁 Estrutura do Projeto
+## � Variáveis de Ambiente
+
+O arquivo `.env` deve conter as seguintes variáveis:
+
+| Variável | Descrição | Exemplo |
+|----------|-----------|---------|
+| `PORT` | Porta do servidor | `3000` |
+| `GMAIL_CLIENT_ID` | Client ID do OAuth2 | `123456789-abc...` |
+| `GMAIL_CLIENT_SECRET` | Client Secret do OAuth2 | `GHIjklMN...` |
+| `GMAIL_REDIRECT_URI` | URI de redirecionamento | `http://localhost:3000/oauth2callback` |
+| `GMAIL_REFRESH_TOKEN` | Token de refresh OAuth2 | `1//abc123...` |
+| `GMAIL_USER_EMAIL` | Email do administrador | `seuemail@gmail.com` |
+
+## �📁 Estrutura do Projeto
 
 ```
 /
 ├── index.html              # Página inicial
 ├── pages/
-│   └── contato.html        # Página de contato
+│   ├── contato.html        # Página de contato
+│   ├── portfolio.html      # Página de portfólio
+│   ├── servico.html        # Página de serviços
+│   └── sobre.html          # Página sobre
 ├── assets/
 │   ├── css/
 │   │   └── style.css       # Estilos CSS
-│   ├── js/
-│   │   └── script.js       # JavaScript
-│   └── images/             # Imagens (favicon, etc.)
+│   └── js/
+│       └── script.js       # JavaScript
 ├── server.js               # Backend Node.js
 ├── package.json            # Dependências
 ├── .env                    # Configurações (não commitar)
+├── .env.example           # Exemplo das variáveis necessárias
+├── .gitignore             # Arquivos ignorados pelo Git
 └── README.md              # Este arquivo
 ```
 
